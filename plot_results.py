@@ -24,12 +24,15 @@ for keyword in keywords_counter:
 
     x = list(normalised_counts.keys())
     y = list(normalised_counts.values())
+    y = [i*100 for i in y]  # Multiply by 100 to get percentages
 
     x_pos = list(range(len(x)))
 
     plt.bar(x_pos, y)
-    plt.xticks(x_pos, x)
-    plt.title(keyword)
+    plt.xticks(x_pos[::2], x[::2])
+    plt.title("*"+keyword+"*")
+    plt.xlabel("Year")
+    plt.ylabel("% of abstracts containing keyword")
 
     plt.savefig(PLOTS_DIR / keyword)
     # plt.show()

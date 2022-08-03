@@ -1,3 +1,4 @@
 old*
 .DS_Store
 metadata.txt
+__pycache__/

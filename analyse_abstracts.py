@@ -9,8 +9,8 @@ with open(DIR / 'metadata.txt') as f:
 
 parsed_metadata = feedparser.parse(metadata)
 
-KEYWORDS = ["safety", "align", "bias", "fair", "human values", "AGI", "general intelligence", "generality", "AI safety", "interpretab", "transparent", "discriminat", "accountab", "privacy", "weapon", "lethal", "killer", "ethic", "beneficial", "convergence", "power-seeking", "AI-complete",
-            "AI-hard", "transformative", "superintelligence", "human compatible", "human-compatible", "provably beneficial", "inverse reinforcement learning", "value alignment", "human-like", "general", "existential risk", "existential-risk", "x-risk", "control problem", "friendly", ]
+KEYWORDS = ["value align", "safety", "align", "bias", "fair", "human values", " AGI ", "general intelligence", "generality", "AI safety", "interpretab", "transparent", "discriminat", "accountab", "privacy", "weapon", "lethal", "killer", "ethic", "beneficial", "convergence", "power-seeking", "AI-complete",
+            "AI-hard", "transformative", "superintelligence", "human compatible", "human-compatible", "provably beneficial", "inverse reinforcement learning", "value alignment", "human-like", "general", "existential risk", "existential-risk", "x-risk", "control problem", "friendly", "explainab"]
 
 CUTOFF_YEAR = 2002
 
@@ -25,9 +25,9 @@ for keyword in KEYWORDS:
 total_papers_counter = {}
 
 for entry in parsed_metadata.entries:
-    year_published = entry.published[0:4]
+    year_published = int(entry.published[0:4])
 
-    if year_published < CUTOFF_YEAR:
+    if int(year_published) < CUTOFF_YEAR:
         break
 
     if year_published not in total_papers_counter:
@@ -36,7 +36,6 @@ for entry in parsed_metadata.entries:
     total_papers_counter[year_published] += 1
 
     for keyword in KEYWORDS:
-        summary_saved = False
         if keyword in entry.summary:
             keywords_counter[keyword][year_published] += 1
 
