@@ -48,5 +48,4 @@ for i in range(int(round(MAX_RESULTS / RESULTS_PER_QUERY))):
 '''
 TODO: 
 - change to script to accept user input to define the keywords to search for
-- Make all dicts have years from 2002-2022. Define a variable which is the cutoff year. 
 '''

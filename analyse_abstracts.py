@@ -2,8 +2,6 @@ import feedparser
 from pathlib import Path
 import pickle
 
-from get_abstracts import CUTOFF_YEAR
-
 # Load metadata as a string
 DIR = Path(__file__).parent.absolute()
 with open(DIR / 'metadata.txt') as f:
@@ -16,9 +14,13 @@ KEYWORDS = ["safety", "align", "bias", "fair", "human values", "AGI", "general i
 
 CUTOFF_YEAR = 2002
 
+# Initialise dicts to store results
 keywords_counter = {}
 for keyword in KEYWORDS:
     keywords_counter[keyword] = {}
+
+    for year in range(CUTOFF_YEAR, 2022 + 1):
+        keywords_counter[keyword][year] = 0
 
 total_papers_counter = {}
 
@@ -36,10 +38,6 @@ for entry in parsed_metadata.entries:
     for keyword in KEYWORDS:
         summary_saved = False
         if keyword in entry.summary:
-
-            if year_published not in keywords_counter[keyword]:
-                keywords_counter[keyword][year_published] = 0
-
             keywords_counter[keyword][year_published] += 1
 
 
