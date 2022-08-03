@@ -48,7 +48,5 @@ for i in range(int(round(MAX_RESULTS / RESULTS_PER_QUERY))):
 '''
 TODO: 
 - change to script to accept user input to define the keywords to search for
-- Save the plots to a plots folder (and create the folder)
-- Separate the data collection and analysis: one script for obtaining all the papers for the past X number of years and saving the resulting Atom formatted text in a .txt file. A second script then loads that text, parses it and analyses it.
 - Make all dicts have years from 2002-2022. Define a variable which is the cutoff year. 
 '''
