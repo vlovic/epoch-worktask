@@ -8,13 +8,16 @@ DIR = Path(__file__).parent.absolute()
 with open(DIR / "metadata.txt", "w") as f:
     pass
 
-CUTOFF_YEAR = 2002
+#CUTOFF_YEAR = 2002
+#CATEGORY = "cs.AI"
+CUTOFF_YEAR = input("Get papers starting from which year?:")
+CATEGORY = input("Get paper from which arXiv category?:")
 
 MAX_RESULTS = 1e6
 RESULTS_PER_QUERY = 1e3
 
 URL = "http://export.arxiv.org/api/query"
-PARAMS = {"search_query": "cat:cs.AI", "max_results": str(
+PARAMS = {"search_query": f"cat:{CATEGORY}", "max_results": str(
     int(RESULTS_PER_QUERY)), "sortBy": "submittedDate"}
 
 for i in range(int(round(MAX_RESULTS / RESULTS_PER_QUERY))):
@@ -41,7 +44,7 @@ for i in range(int(round(MAX_RESULTS / RESULTS_PER_QUERY))):
     with open(DIR / "metadata.txt", "a") as f:
         f.write(metadata.text)
 
-    if int(parsed_metadata.entries[-1].published[0:4]) < CUTOFF_YEAR:
+    if parsed_metadata.entries[-1].published[0:4] < CUTOFF_YEAR:
         break
 
 

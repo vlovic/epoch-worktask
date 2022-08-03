@@ -2,3 +2,5 @@ old*
 .DS_Store
 __pycache__/
 *.docx
+metadata.txt
+*.pickle
